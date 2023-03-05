@@ -29,11 +29,8 @@ open class SecurityConfig(
         val authenticationManager = authManager(http)
         // Put your endpoint to create/sign, otherwise spring will secure it as
         // well you won't be able to do any request
-        http
-            .antMatcher("/users/**")
-            .authorizeRequests() //
-            .anyRequest().authenticated() //
-            .and().csrf().disable()
+        http.authorizeRequests().antMatchers("/auth/**")
+            .permitAll().anyRequest().authenticated().and().csrf().disable()
             .authenticationManager(authenticationManager)
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
             .addFilter(JwtAuthenticationFilter(jwtToken, authenticationManager))
