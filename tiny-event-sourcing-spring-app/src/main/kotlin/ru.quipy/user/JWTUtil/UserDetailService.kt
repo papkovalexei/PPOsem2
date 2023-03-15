@@ -27,7 +27,7 @@ class UserDetailsService(
             id = user.email,
             email = user.email,
             uPassword = user.password,
-            uAuthorities = Collections.singleton(SimpleGrantedAuthority("user"))
+            uAuthorities = Collections.singleton(SimpleGrantedAuthority(user.role))
         )
     }
 }

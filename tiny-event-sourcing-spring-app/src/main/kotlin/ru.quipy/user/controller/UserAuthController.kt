@@ -27,7 +27,8 @@ class UserAuthController (
         return usersRepository.save(UserMongo(
             email = userRegisterDTO.email,
             password =  passwordEncoder.encode(userRegisterDTO.password),
-            aggregateId = userEsService.create { it.createNewUser() }.userId
+            aggregateId = userEsService.create { it.createNewUser() }.userId,
+            role = "user"
         ))
     }
 }
